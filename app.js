@@ -4,7 +4,7 @@ let app = express();
 let tasks = [
     { id:1, text:"hacer la compra"},
     { id:2, text:"pagar la luz"},
-    { id:3, text:"recisar las facturas"},
+    { id:3, text:"revisar las facturas"},
 ]
 let users = [
     { id:1, email:"user1", password:"user1"},
@@ -13,6 +13,16 @@ let users = [
 
 app.get("/tasks", (req, res)=>{
     res.send(tasks)
+})
+
+app.get("/user/:id", (req, res)=>{
+   let id = req.params.id
+   let user = users.find( (u) => t.id == id )
+   if (user == undefined){
+    res.send("Error")
+    return 
+   }
+    res.send(user)
 })
 
 app.get("/users", (req, res)=>{
