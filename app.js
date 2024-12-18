@@ -12,6 +12,12 @@ let users = [
 ]
 
 app.get("/tasks", (req, res)=>{
+    let text = req.query.text
+    if ( text != undefined){
+        let tasksWithText = tasks.filter ( tasks => tasks.text.indexOf (text) != -1 )
+        res.send(tasksWithText)
+        return 
+    }
     res.send(tasks)
 })
 
@@ -26,6 +32,12 @@ app.get("/user/:id", (req, res)=>{
 })
 
 app.get("/users", (req, res)=>{
+    let email = req.query.email
+    if (email != undefined){
+      let usersWithEmail = users.filter( user => user.email == email)
+      res.send(usersWithEmail)
+      return 
+    }
     res.send(users)
 })
 
